@@ -1,6 +1,6 @@
 # Three.js webgl test
 
-A test to overcome the limitations of the maximum 16 webgl canvas.
+A WebGL test to overcome the limitations of the maximum 16 webgl canvas.
 
 
 Contents:
