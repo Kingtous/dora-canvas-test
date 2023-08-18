@@ -1,44 +1,9 @@
 import * as THREE from './three.module.js';
-// import * as Util from './utils.js';
-// Set up the scene, camera, and renderer
-// const scene = new THREE.Scene();
-// const camera = new THREE.PerspectiveCamera(100, 3 / 3, 0.1, 100);
 const renderer = new THREE.WebGLRenderer();
 const width = 300;
 const height = 300;
 const container = document.getElementById("container");
-// document.getElementById("container").appendChild(renderer.domElement);
 renderer.setSize(width, height);
-// ========离屏渲染=======
-// const bufferScene = new THREE.Scene();
-// const bufferTexture = new THREE.WebGLRenderTarget(300, 300, {
-//   minFilter: THREE.LinearFilter,
-//   magFilter: THREE.NearestFilter
-// });
-// const innerGeo = new THREE.BoxGeometry(5, 5, 5);
-// const innerMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffaa });
-// const cube2 = new THREE.Mesh(innerGeo, innerMaterial);
-// cube2.position.z -= 1;
-// bufferScene.add(cube2);
-// /// 蓝色背景
-// var blueMaterial = new THREE.MeshBasicMaterial({ color: 0x7074FF });
-// var plane = new THREE.PlaneGeometry(width, height);
-// var planeObject = new THREE.Mesh(plane, blueMaterial);
-// planeObject.position.z = -15;
-// bufferScene.add(planeObject);
-// //=====================================
-
-// // 要渲染的绿色物体，然后在每个面上加上上面的texture材质
-// const geometry = new THREE.BoxGeometry(5, 5, 5);
-// // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-// const material = new THREE.MeshBasicMaterial({ map: bufferTexture.texture, color: 0xff00 });
-// // Create a mesh and add it to the scene
-// const cube = new THREE.Mesh(geometry, material);
-// cube.position.z -= 5;
-// scene.add(cube);
-// // Position the camera
-// // camera.position.z = 5;
-
 const glContext = renderer.getContext();
 
 const renderContextArr = [];
@@ -65,7 +30,7 @@ for (let index = 0; index < 20; index++) {
 
   const scene = new THREE.Scene();
   scene.add(cube);
-  scene.add(blueMaterial);
+  scene.add(planeObject);
   
   context2d.canvas.width = width;
   context2d.canvas.height = height;

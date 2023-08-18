@@ -1,12 +1,19 @@
-const canvas2D = document.getElementById('singleton-canvas'); // Your new canvas element
-const gl2D = canvas2D.getContext('webgl');
-
 const vertexShaderSource = `
     attribute vec2 a_position;
     varying vec2 v_texCoord;
 
     void main() {
         gl_Position = vec4(a_position, 0.0, 1.0);
+        v_texCoord = a_position * 0.5 + 0.5; // Normalize to [0, 1]
+    }
+`;
+
+const vertexShaderSourceR = `
+    attribute vec2 a_position;
+    varying vec2 v_texCoord;
+
+    void main() {
+        gl_Position = vec4(a_position.x, -a_position.y, 0.0, 1.0);
         v_texCoord = a_position * 0.5 + 0.5; // Normalize to [0, 1]
     }
 `;
@@ -49,10 +56,6 @@ function createProgram(gl, vertexShader, fragmentShader) {
     return program;
 }
 
-const vertexShader = createShader(gl2D, gl2D.VERTEX_SHADER, vertexShaderSource);
-const fragmentShader = createShader(gl2D, gl2D.FRAGMENT_SHADER, fragmentShaderSource);
-const program = createProgram(gl2D, vertexShader, fragmentShader);
-
 function transferPixelsToCanvas2d(gl, canvas2dcontext) {
     gl.useProgram(program);
     const positionBuffer = gl.createBuffer();
@@ -78,7 +81,7 @@ function transferPixelsToCanvas2d(gl, canvas2dcontext) {
 }
 
 
-export {vertexShaderSource, fragmentShaderSource, gl2D, program, transferPixelsToCanvas2d};
+export {vertexShaderSource, fragmentShaderSource, transferPixelsToCanvas2d, createProgram, createShader, vertexShaderSourceR};
 
 
 
